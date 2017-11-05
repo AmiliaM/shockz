@@ -36,7 +36,7 @@ def gen_floor(width, height):
 current_floor = gen_floor(16, 16)
 
 #setup monsters
-monsternum = randint(0, 5)
+monsternum = randint(1, 5)
 def gen_monsters():
     monsters = []
     for i in range(0, monsternum):

@@ -1,11 +1,12 @@
 # File: shockz.py
-# Author: Amilia
+# Author: AmiliaM
 # Created November 5, 2017, at 12:00 PM
-
 
 import sys, pygame, pygame.locals
 from random import randint
 pygame.init()
+
+
 
 #setup display
 s_size = s_width, s_height = [256, 256]
@@ -34,25 +35,35 @@ def gen_floor(width, height):
     return floor
 current_floor = gen_floor(16, 16)
 
-#setup keys
-but_inv = "K_s"
-but_cycle = "K_TAB"
-but_fire = "K_RETURN"
-but_mv_n = "K_w"
-but_mv_s = "K_x"
-but_mv_e = "K_d"
-but_mv_w = "K_a"
-but_mv_ne = "K_e"
-but_mv_nw = "K_q"
-but_mv_se = "K_c"
-but_mv_sw = "K_z"
-
 
 #run the game
 while 1:
     #user input
     for event in pygame.event.get():
         if event.type == pygame.QUIT: sys.exit()
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_s:
+                print "inv"
+            elif event.key == pygame.K_q:
+                playerrect = playerrect.move(-16, -16)
+            elif event.key == pygame.K_w:
+                playerrect = playerrect.move(0, -16)
+            elif event.key == pygame.K_e:
+                playerrect = playerrect.move(16, -16)
+            elif event.key == pygame.K_a:
+                playerrect = playerrect.move(-16, 0)
+            elif event.key == pygame.K_d:
+                playerrect = playerrect.move(16, 0)
+            elif event.key == pygame.K_z:
+                playerrect = playerrect.move(-16, 16)
+            elif event.key == pygame.K_x:
+                playerrect = playerrect.move(0, 16)
+            elif event.key == pygame.K_c:
+                playerrect = playerrect.move(16, 16)
+            elif event.key == pygame.K_TAB:
+                print "cycle"
+            elif event.key == pygame.K_RETURN:
+                print "fire"
 
 
     #turn and processing
@@ -75,6 +86,6 @@ while 1:
         d_pos_y += 16
 
     #player
-    #screen.blit(player, playerrect)
+    screen.blit(player, playerrect)
 
     pygame.display.flip()

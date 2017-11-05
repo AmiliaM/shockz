@@ -91,9 +91,10 @@ while gameover == False:
                 if player_floor_type == mob_floor_type:
                     current_monsters.remove(current_monsters[tar_index])
 
-
-
     #turn and processing
+    if len(current_monsters) < 1:
+        win = True
+        break
     #player bounds
     if playerrect[0] < 0:
         playerrect[0] = 0
@@ -153,14 +154,26 @@ while gameover == False:
 
 font = pygame.font.SysFont(None, 48)
 deathmessage = font.render('You died!', True, (255, 0, 0))
+winmessage = font.render('You win', True, (255, 0, 0))
 textrect = deathmessage.get_rect()
 textrect.centerx = screen.get_rect().centerx
 textrect.centery = screen.get_rect().centery
-while 1:
+
+while gameover:
     for event in pygame.event.get():
         if event.type == pygame.QUIT: sys.exit()
 
     screen.fill(black)
     screen.blit(deathmessage, textrect)
+
+    pygame.display.flip()
+
+
+while win:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT: sys.exit()
+
+    screen.fill(black)
+    screen.blit(winmessage, textrect)
 
     pygame.display.flip()
